@@ -69,7 +69,7 @@ public class SamplePlayer {
     }
 
     public long getDurationMillisec() {
-        return mTotalSamples * 1000 / SAMPLE_FREQUENCY;
+        return (long) ((double) mTotalSamples * 1000 / SAMPLE_FREQUENCY);
     }
 
     public boolean isPlaying() {
@@ -90,7 +90,7 @@ public class SamplePlayer {
     public long getProgressMillisec() {
         if (mTrack != null)
             try {
-                return mTrack.getPlaybackHeadPosition() * 1000 / SAMPLE_FREQUENCY;
+                return (long) ((double) mTrack.getPlaybackHeadPosition() * 1000 / SAMPLE_FREQUENCY);
             } catch (Exception e) {
             }
 
