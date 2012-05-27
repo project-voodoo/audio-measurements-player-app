@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Voodoo Audio Measurements Player</string>
+    <string name="button_rmaa_calibration">RMAA Calibration</string>
+    <string name="button_rmaa_test">RMAA Test</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_udial">Udial</string>
+    <string name="stopped">Stopped</string>
+    <string name="credits">Author: François SIMOND - supercurio\n\nCredits: RMAA and unknown for samples, FLAC and jFlac teams for the FLAC decoder.</string>
+</resources>
