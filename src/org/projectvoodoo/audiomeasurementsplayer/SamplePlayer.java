@@ -19,7 +19,7 @@ public class SamplePlayer {
     private static final String TAG = "Voodoo AudioMeasurementsPlayer SamplePlayer";
 
     private static final int SAMPLE_FREQUENCY = 44100;
-    private static final int BUFFER_MILLISEC = 500;
+    private static final int BUFFER_MILLISEC = 800;
 
     private Object playingLock = new Object();
     private InputStream mInputStream;
@@ -121,11 +121,12 @@ public class SamplePlayer {
             super.run();
             synchronized (playingLock) {
 
+                mDecoderTrack = mTrack = getAudioTrack();
                 try {
-                    mInputStream = App.context.getAssets().open(mSample.assetFileName);
+                    String realAssetFileName = mSample.assetFileName + ".ogg";
+                    mInputStream = App.context.getAssets().open(realAssetFileName);
                     FLACDecoder decoder = new FLACDecoder(mInputStream);
 
-                    mDecoderTrack = mTrack = getAudioTrack();
                     decoder.addPCMProcessor(new AudioTrackOutput(mDecoderTrack));
                     mDecoderTrack.play();
                     mCallback.run();
@@ -135,8 +136,10 @@ public class SamplePlayer {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (Exception e) {
+                } catch (NullPointerException e) {
                     // manual stop
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 mInputStream = null;
@@ -163,12 +166,13 @@ public class SamplePlayer {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private AudioTrack getAudioTrack() {
         mLastTimePlaying = 0;
         return new AudioTrack(
                 AudioManager.STREAM_MUSIC,
                 SAMPLE_FREQUENCY,
-                AudioFormat.CHANNEL_OUT_STEREO,
+                AudioFormat.CHANNEL_CONFIGURATION_STEREO,
                 AudioFormat.ENCODING_PCM_16BIT,
                 SAMPLE_FREQUENCY * BUFFER_MILLISEC / 1000 * 4,
                 AudioTrack.MODE_STREAM);
