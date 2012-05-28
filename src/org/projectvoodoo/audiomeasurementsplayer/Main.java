@@ -1,6 +1,8 @@
 
 package org.projectvoodoo.audiomeasurementsplayer;
 
+import java.lang.reflect.Field;
+
 import org.projectvoodoo.audiomeasurementsplayer.SamplePlayer.Sample;
 
 import android.app.Activity;
@@ -28,6 +30,8 @@ public class Main extends Activity implements OnClickListener {
     private TextView mTextTime;
     private TextView mSampleName;
 
+    private int progressDelayMillisec = 250;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,9 @@ public class Main extends Activity implements OnClickListener {
             Log.i(TAG, "New SamplePlayer");
             App.player = new SamplePlayer();
         }
+
+        if (getPlatformVersion() >= 9)
+            progressDelayMillisec = 15;
 
         setProgress();
 
@@ -100,9 +107,8 @@ public class Main extends Activity implements OnClickListener {
 
                     setProgress();
                 }
-            }, 15);
-        else
-        {
+            }, progressDelayMillisec);
+        else {
             mTextTime.setText(String.format(format, 0f, 0f));
             mSampleName.setText(R.string.stopped);
         }
@@ -112,6 +118,16 @@ public class Main extends Activity implements OnClickListener {
         @Override
         public void run() {
             setProgress();
+        }
+    }
+
+    private static int getPlatformVersion() {
+        try {
+            Field verField = Class.forName("android.os.Build$VERSION").getField("SDK_INT");
+            int ver = verField.getInt(verField);
+            return ver;
+        } catch (Exception e) {
+            return 3;
         }
     }
 
