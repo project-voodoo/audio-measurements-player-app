@@ -42,11 +42,11 @@ public class SamplePlayer {
         }
     }
 
-    public synchronized void play(Sample sample, Runnable callback) {
+    public synchronized void play(Sample sample, boolean loop, Runnable callback) {
         stop();
 
         Log.i(TAG, "Playing " + sample + ": " + sample.assetFileName);
-        DecodingTask task = new DecodingTask(sample, callback);
+        DecodingTask task = new DecodingTask(sample, loop, callback);
         task.start();
         lastPlayedSample = sample;
     }
@@ -108,11 +108,13 @@ public class SamplePlayer {
         private Sample mSample;
         private AudioTrack mDecoderTrack;
         private Runnable mCallback;
+        private boolean mLoop;
 
-        public DecodingTask(Sample sample, Runnable callback) {
+        public DecodingTask(Sample sample, boolean loop, Runnable callback) {
             setPriority(MAX_PRIORITY);
             setName("Sample Decoder/Player");
             this.mSample = sample;
+            mLoop = loop;
             mCallback = callback;
         }
 
@@ -123,16 +125,20 @@ public class SamplePlayer {
 
                 mDecoderTrack = mTrack = getAudioTrack();
                 try {
-                    String realAssetFileName = mSample.assetFileName + ".ogg";
-                    mInputStream = App.context.getAssets().open(realAssetFileName);
-                    FLACDecoder decoder = new FLACDecoder(mInputStream);
+                    while (true) {
+                        String realAssetFileName = mSample.assetFileName + ".ogg";
+                        mInputStream = App.context.getAssets().open(realAssetFileName);
+                        FLACDecoder decoder = new FLACDecoder(mInputStream);
 
-                    decoder.addPCMProcessor(new AudioTrackOutput(mDecoderTrack));
-                    mDecoderTrack.play();
-                    mCallback.run();
-                    decoder.decode();
-                    mInputStream.close();
-                    Log.i(TAG, "Finished");
+                        decoder.addPCMProcessor(new AudioTrackOutput(mDecoderTrack));
+                        mDecoderTrack.play();
+                        mCallback.run();
+                        decoder.decode();
+                        mInputStream.close();
+
+                        if (!mLoop)
+                            break;
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -142,6 +148,7 @@ public class SamplePlayer {
                     e.printStackTrace();
                 }
 
+                Log.i(TAG, "Finished");
                 mInputStream = null;
                 mDecoderTrack.stop();
             }

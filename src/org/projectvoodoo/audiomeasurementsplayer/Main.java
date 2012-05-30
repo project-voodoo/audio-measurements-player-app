@@ -67,15 +67,15 @@ public class Main extends Activity implements OnClickListener {
 
         switch (v.getId()) {
             case R.id.button_rmaa_calibration:
-                App.player.play(Sample.RMAA_CALIBRATION, new PlayCallback());
+                App.player.play(Sample.RMAA_CALIBRATION, true, new PlayCallback());
                 break;
 
             case R.id.button_rmaa_test:
-                App.player.play(Sample.RMAA_TEST, new PlayCallback());
+                App.player.play(Sample.RMAA_TEST, false, new PlayCallback());
                 break;
 
             case R.id.button_udial:
-                App.player.play(Sample.UDIAL, new PlayCallback());
+                App.player.play(Sample.UDIAL, false, new PlayCallback());
                 break;
 
             case R.id.button_stop:
