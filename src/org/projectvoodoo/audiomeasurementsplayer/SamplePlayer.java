@@ -84,6 +84,8 @@ public class SamplePlayer {
         if (System.currentTimeMillis() < mLastTimePlaying + BUFFER_MILLISEC + 50)
             return true;
 
+        mTrack.release();
+        mTrack = null;
         return false;
     }
 
@@ -151,7 +153,6 @@ public class SamplePlayer {
                 Log.i(TAG, "Finished");
                 mInputStream = null;
                 mDecoderTrack.stop();
-                mTrack = null;
             }
         }
 
