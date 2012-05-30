@@ -151,6 +151,7 @@ public class SamplePlayer {
                 Log.i(TAG, "Finished");
                 mInputStream = null;
                 mDecoderTrack.stop();
+                mTrack = null;
             }
         }
 
