@@ -150,9 +150,11 @@ public class SamplePlayer {
                     e.printStackTrace();
                 }
 
+                if (mDecoderTrack.getPlayState() == AudioTrack.PLAYSTATE_PLAYING)
+                    mDecoderTrack.stop();
+
                 Log.i(TAG, "Finished");
                 mInputStream = null;
-                mDecoderTrack.stop();
             }
         }
 
