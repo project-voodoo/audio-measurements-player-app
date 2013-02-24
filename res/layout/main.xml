@@ -23,6 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        <Button
+            android:id="@+id/button_stop"
+            style="@style/buttonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_stop" />
     </LinearLayout>
     <ScrollView
         android:id="@+id/scroll"
@@ -32,13 +38,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="8dp" >
             <Button
                 android:id="@+id/button_rmaa_calibration"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_rmaa_calibration" />
+            <Button
+                android:id="@+id/button_square_calibration"
+                style="@style/buttonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_square_calibration" />
+            <Button
+                android:id="@+id/button_zeros"
+                style="@style/buttonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_zeros" />
+            <Button
+                android:id="@+id/button_faint_noise"
+                style="@style/buttonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_faint_noise" />
             <Button
                 android:id="@+id/button_rmaa_test"
                 style="@style/buttonStyle"
@@ -52,11 +77,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_udial" />
             <Button
-                android:id="@+id/button_stop"
+                android:id="@+id/button_ccifimd"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/button_stop" />
+                android:text="@string/button_ccifimd" />
             <TextView
                 android:id="@+id/text_native_sample_rate"
                 android:layout_width="wrap_content"

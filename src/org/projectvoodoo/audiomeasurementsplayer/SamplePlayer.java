@@ -31,8 +31,12 @@ public class SamplePlayer {
 
     enum Sample {
         RMAA_CALIBRATION("rmaa-calibration-44100-16.flac"),
+        SQUARE_CALIBRATION("square-1kHz-calibration-44100-16.flac"),
+        ZEROS("zeros.flac"),
+        FAINT_NOISE("faint-noise.flac"),
         RMAA_TEST("rmaa-test-44100-16.flac"),
         UDIAL("udial.flac"),
+        CCIFIMD("ccif-imd.flac"),
 
         ;
         String assetFileName;

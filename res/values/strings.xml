@@ -2,9 +2,13 @@
 <resources>
     <string name="app_name">Voodoo Audio Measurements Player</string>
     <string name="button_rmaa_calibration">RMAA 2.6.5 Calibration</string>
+    <string name="button_square_calibration">1kHz 0dB FS Square Calibration</string>
+    <string name="button_zeros">Zeros</string>
+    <string name="button_faint_noise">-72dB FS Pink Noise</string>
     <string name="button_rmaa_test">RMAA 2.6.5 Test</string>
     <string name="button_stop">Stop</string>
     <string name="button_udial">Udial</string>
+    <string name="button_ccifimd">CCIF IMD 19+20kHz sines</string>
     <string name="stopped">Stopped</string>
     <string name="credits">Author: François SIMOND - supercurio\n\nCredits: RMAA and unknown for samples, FLAC and jFlac teams for the FLAC decoder.</string>
 </resources>

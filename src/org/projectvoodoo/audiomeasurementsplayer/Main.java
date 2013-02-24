@@ -21,8 +21,12 @@ public class Main extends Activity implements OnClickListener {
 
     private static final int[] CLICKABLE_BUTTONS = {
             R.id.button_rmaa_calibration,
+            R.id.button_square_calibration,
+            R.id.button_zeros,
+            R.id.button_faint_noise,
             R.id.button_rmaa_test,
             R.id.button_udial,
+            R.id.button_ccifimd,
             R.id.button_stop,
     };
 
@@ -70,12 +74,28 @@ public class Main extends Activity implements OnClickListener {
                 App.player.play(Sample.RMAA_CALIBRATION, true, new PlayCallback());
                 break;
 
+            case R.id.button_square_calibration:
+                App.player.play(Sample.SQUARE_CALIBRATION, true, new PlayCallback());
+                break;
+
+            case R.id.button_zeros:
+                App.player.play(Sample.ZEROS, true, new PlayCallback());
+                break;
+
+            case R.id.button_faint_noise:
+                App.player.play(Sample.FAINT_NOISE, true, new PlayCallback());
+                break;
+
             case R.id.button_rmaa_test:
                 App.player.play(Sample.RMAA_TEST, false, new PlayCallback());
                 break;
 
             case R.id.button_udial:
                 App.player.play(Sample.UDIAL, false, new PlayCallback());
+                break;
+
+            case R.id.button_ccifimd:
+                App.player.play(Sample.CCIFIMD, false, new PlayCallback());
                 break;
 
             case R.id.button_stop:
